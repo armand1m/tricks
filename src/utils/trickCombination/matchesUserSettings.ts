@@ -1,17 +1,24 @@
 import { UserSettings } from '../../state/userSettings';
-import { TrickCombination } from '../../data/tricks';
+import {
+  getDifficultyLevelNumber,
+  TrickCombination,
+} from '../../data/tricks';
 
 export const matchUserSettings =
   (userSettings: UserSettings) => (combination: TrickCombination) => {
-    /**
-     * TODO: we need to match for the config
-     * areas as well.
-     *
-     * We also gotta setup a default config, otherwise
-     * no tricks might be shown
-     */
+    const trickDifficultyLevel = getDifficultyLevelNumber(
+      combination.difficulty
+    );
+    const settingsDifficultyLevel = getDifficultyLevelNumber(
+      userSettings.level
+    );
+
+    const matchesDifficulty = userSettings.includeEasierTricks
+      ? trickDifficultyLevel <= settingsDifficultyLevel
+      : combination.difficulty === userSettings.level;
+
     const match =
-      combination.difficulty === userSettings.level &&
+      matchesDifficulty &&
       userSettings.stances.includes(combination.stance) &&
       userSettings.areas.filter((area) =>
         combination.areas.includes(area)

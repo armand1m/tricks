@@ -8,6 +8,7 @@ import {
 
 export interface UserSettings {
   level: TrickDifficulty;
+  includeEasierTricks: boolean;
   stances: TrickStance[];
   areas: TrickArea[];
 }
@@ -17,6 +18,7 @@ export const userSettingsState = atom<UserSettings>({
   effects_UNSTABLE: [persistAtom],
   default: {
     level: 'easy',
+    includeEasierTricks: false,
     stances: ['regular', 'fakie'],
     areas: ['flatground'],
   },

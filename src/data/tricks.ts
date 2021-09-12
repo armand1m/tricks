@@ -86,6 +86,18 @@ export const getTrickCombinations = (
   );
 };
 
+const difficultyArray = ['easy', 'medium', 'hard', 'xhard'];
+
+export const getDifficultyLevelNumber = (
+  difficulty: TrickDifficulty
+) => {
+  return difficultyArray.indexOf(difficulty);
+};
+
+export const getDifficulty = (levelNumber: number) => {
+  return difficultyArray[levelNumber];
+};
+
 export const railTricks: ReadonlyArray<Trick> = [
   {
     name: 'Backside Boardslide',
@@ -128,6 +140,94 @@ export const railTricks: ReadonlyArray<Trick> = [
       switch: {
         type: 'advanced',
         difficulty: 'medium',
+      },
+    },
+  },
+  {
+    name: 'Backside Feeble',
+    area: 'rails',
+    variations: {
+      regular: {
+        type: 'fundamental',
+        difficulty: 'medium',
+      },
+      fakie: {
+        type: 'advanced',
+        difficulty: 'xhard',
+      },
+      nollie: {
+        type: 'advanced',
+        difficulty: 'xhard',
+      },
+      switch: {
+        type: 'advanced',
+        difficulty: 'xhard',
+      },
+    },
+  },
+  {
+    name: 'Frontside Feeble',
+    area: 'rails',
+    variations: {
+      regular: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      fakie: {
+        type: 'advanced',
+        difficulty: 'xhard',
+      },
+      nollie: {
+        type: 'advanced',
+        difficulty: 'xhard',
+      },
+      switch: {
+        type: 'advanced',
+        difficulty: 'xhard',
+      },
+    },
+  },
+  {
+    name: 'Frontside 50-50',
+    area: 'rails',
+    variations: {
+      regular: {
+        type: 'fundamental',
+        difficulty: 'medium',
+      },
+      fakie: {
+        type: 'advanced',
+        difficulty: 'medium',
+      },
+      nollie: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      switch: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+    },
+  },
+  {
+    name: 'Backside 50-50',
+    area: 'rails',
+    variations: {
+      regular: {
+        type: 'fundamental',
+        difficulty: 'hard',
+      },
+      fakie: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      nollie: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      switch: {
+        type: 'advanced',
+        difficulty: 'hard',
       },
     },
   },
@@ -442,6 +542,185 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       },
     },
   },
+  {
+    name: 'Varial Kickflip',
+    area: 'flatground',
+    variations: {
+      regular: {
+        type: 'fundamental',
+        difficulty: 'medium',
+      },
+      fakie: {
+        type: 'fundamental',
+        difficulty: 'medium',
+      },
+      switch: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      nollie: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+    },
+  },
+  {
+    name: 'Varial Heelflip',
+    area: 'flatground',
+    variations: {
+      regular: {
+        type: 'advanced',
+        difficulty: 'medium',
+      },
+      fakie: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      switch: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      nollie: {
+        type: 'advanced',
+        difficulty: 'medium',
+      },
+    },
+  },
+];
+
+export const ledgeTricks: ReadonlyArray<Trick> = [
+  {
+    name: 'Frontside 50-50',
+    area: 'ledges',
+    variations: {
+      regular: {
+        type: 'fundamental',
+        difficulty: 'easy',
+      },
+      fakie: {
+        type: 'advanced',
+        difficulty: 'medium',
+      },
+      nollie: {
+        type: 'advanced',
+        difficulty: 'medium',
+      },
+      switch: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+    },
+  },
+  {
+    name: 'Backside 50-50',
+    area: 'ledges',
+    variations: {
+      regular: {
+        type: 'fundamental',
+        difficulty: 'medium',
+      },
+      fakie: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      nollie: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      switch: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+    },
+  },
+  {
+    name: 'Backside Crooked Grind',
+    area: 'ledges',
+    variations: {
+      regular: {
+        type: 'fundamental',
+        difficulty: 'medium',
+      },
+      fakie: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      nollie: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      switch: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+    },
+  },
+  {
+    name: 'Frontside Crooked Grind',
+    area: 'ledges',
+    variations: {
+      regular: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      fakie: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      nollie: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      switch: {
+        type: 'advanced',
+        difficulty: 'xhard',
+      },
+    },
+  },
+  {
+    name: 'Frontside 5-0 Grind',
+    area: 'ledges',
+    variations: {
+      regular: {
+        type: 'fundamental',
+        difficulty: 'easy',
+      },
+      fakie: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      nollie: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      switch: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+    },
+  },
+  {
+    name: 'Backside 5-0 Grind',
+    area: 'ledges',
+    variations: {
+      regular: {
+        type: 'fundamental',
+        difficulty: 'medium',
+      },
+      fakie: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      nollie: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+      switch: {
+        type: 'advanced',
+        difficulty: 'hard',
+      },
+    },
+  },
 ];
 
 /**
@@ -450,8 +729,8 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
 export const trickAreaMap: Record<TrickArea, readonly Trick[]> = {
   flatground: flatgroundTricks,
   rails: railTricks,
-  gap: [],
-  ledges: [],
+  gap: flatgroundTricks,
+  ledges: ledgeTricks,
   manuals: [],
   freestyle: [],
   transition: [],

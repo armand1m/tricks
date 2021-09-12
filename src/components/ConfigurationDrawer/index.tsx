@@ -18,41 +18,37 @@ import {
   FormLabel,
   Stack,
   SimpleGrid,
+  Switch,
 } from '@chakra-ui/react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useRecoilState } from 'recoil';
 import { userSettingsState } from '../../state/userSettings';
 import {
+  getDifficulty,
+  getDifficultyLevelNumber,
   getTrickDifficultyLabel,
   TrickArea,
   trickAreaLabels,
-  TrickDifficulty,
   TrickStance,
   trickStanceLabels,
 } from '../../data/tricks';
+import { useCallback } from 'react';
 
 const userSettingsSchema = Yup.object({
   areas: Yup.array().min(1, 'Please choose at least one area.'),
   stances: Yup.array().min(1, 'Please select at least one stance.'),
+  includeEasierTricks: Yup.boolean().default(false),
   level: Yup.string()
     .oneOf(['easy', 'medium', 'hard', 'xhard'])
     .required('Please select a trick level'),
 });
 
-const difficultyArray = ['easy', 'medium', 'hard', 'xhard'];
-
-const getDifficultyLevelNumber = (difficulty: TrickDifficulty) => {
-  return difficultyArray.indexOf(difficulty);
-};
-
-const getDifficulty = (levelNumber: number) => {
-  return difficultyArray[levelNumber];
-};
-
 export const ConfigurationDrawer = (
   props: Omit<DrawerProps, 'children'>
 ) => {
+  const { onClose } = props;
+
   const [userSettings, setUserSettings] =
     useRecoilState(userSettingsState);
 
@@ -61,9 +57,18 @@ export const ConfigurationDrawer = (
     validationSchema: userSettingsSchema,
     onSubmit: (values) => {
       setUserSettings(values);
-      props.onClose();
+      onClose();
     },
   });
+
+  const resetForm = formik.resetForm;
+
+  const onCancel = useCallback(() => {
+    onClose();
+    resetForm({
+      values: userSettings,
+    });
+  }, [userSettings, onClose, resetForm]);
 
   return (
     <Drawer placement="right" size="sm" {...props}>
@@ -178,12 +183,29 @@ export const ConfigurationDrawer = (
                   )}
                 </SimpleGrid>
               </FormControl>
+
+              <FormControl display="flex" alignItems="center">
+                <FormLabel htmlFor="includeEasierTricks">
+                  Include Easier Tricks
+                </FormLabel>
+
+                <Switch
+                  id="includeEasierTricks"
+                  isChecked={formik.values.includeEasierTricks}
+                  onChange={(e) => {
+                    formik.setFieldValue(
+                      'includeEasierTricks',
+                      e.target.checked
+                    );
+                  }}
+                />
+              </FormControl>
             </Stack>
           </form>
         </DrawerBody>
 
         <DrawerFooter>
-          <Button variant="outline" mr={3} onClick={props.onClose}>
+          <Button variant="outline" mr={3} onClick={onCancel}>
             Cancel
           </Button>
           <Button
