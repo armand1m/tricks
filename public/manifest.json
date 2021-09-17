@@ -1,6 +1,8 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Trickss",
+  "manifest_version": 2,
+  "version": "0.0.0",
+  "name": "Trickss - Your personal skateboarding trainer",
   "icons": [
     {
       "src": "favicon.ico",

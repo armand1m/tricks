@@ -13,6 +13,10 @@ export type TrickStance = 'switch' | 'nollie' | 'fakie' | 'regular';
 export interface TrickVariation {
   type: TrickType;
   difficulty: TrickDifficulty;
+  video?: {
+    embedUrl: string;
+    title: string;
+  };
 }
 
 export interface Trick {
@@ -66,6 +70,10 @@ export interface TrickCombination {
   areas: [TrickArea];
   difficulty: TrickDifficulty;
   type: TrickType;
+  video?: {
+    embedUrl: string;
+    title: string;
+  };
 }
 
 export const getTrickCombinations = (
@@ -81,6 +89,7 @@ export const getTrickCombinations = (
         areas: [trick.area],
         difficulty: variation.difficulty,
         type: variation.type,
+        video: variation.video,
       };
     }
   );
@@ -263,6 +272,10 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       regular: {
         type: 'fundamental',
         difficulty: 'medium',
+        video: {
+          embedUrl: 'https://www.youtube.com/embed/nUQOC4vvCdw',
+          title: 'PJ Ladd Flatground Fundamentals - Kickflip',
+        },
       },
       fakie: {
         type: 'fundamental',
@@ -285,6 +298,10 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       regular: {
         type: 'fundamental',
         difficulty: 'medium',
+        video: {
+          embedUrl: 'https://www.youtube.com/embed/-nX9lB0S69w',
+          title: 'PJ Ladd Flatground Fundamentals - Heelflip',
+        },
       },
       fakie: {
         type: 'fundamental',
@@ -373,6 +390,10 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       regular: {
         type: 'fundamental',
         difficulty: 'easy',
+        video: {
+          embedUrl: 'https://www.youtube.com/embed/KtiDExQMS20',
+          title: 'PJ Ladd Flatground Fundamentals - Pop Shove Its',
+        },
       },
       fakie: {
         type: 'fundamental',
