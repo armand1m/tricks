@@ -1,13 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
-import { useList, usePrevious } from 'react-use';
+import { useLatest, useList } from 'react-use';
 import {
   Button,
   Center,
   Heading,
   HStack,
   IconButton,
-  SlideFade,
   Spacer,
   Stack,
   useDisclosure,
@@ -15,6 +14,7 @@ import {
   List,
   ListItem,
   ListIcon,
+  SlideFade,
 } from '@chakra-ui/react';
 import {
   CheckCircleIcon,
@@ -51,8 +51,7 @@ export const HomePage = () => {
   const [trickQueue, trickQueueActions] = useQueue(trickList);
   const [completed, completedActions] = useList<TrickCombination>([]);
   const [cancelled, cancelledActions] = useList<TrickCombination>([]);
-
-  const prevTrick = usePrevious(trickQueue.first);
+  const currentTrick = useLatest(trickQueue.first);
 
   const onRestart = useCallback(() => {
     completedActions.clear();
@@ -127,8 +126,11 @@ export const HomePage = () => {
 
         {trickQueue.first && (
           <Center>
-            <SlideFade in={trickQueue.first !== prevTrick}>
+            <SlideFade
+              in={currentTrick.current === trickQueue.first}
+              unmountOnExit>
               <TrickCard
+                key={trickQueue.first.name}
                 hasLandedBefore={true}
                 trickCombination={trickQueue.first}
                 onSuccess={() => {
