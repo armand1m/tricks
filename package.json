@@ -29,7 +29,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scriptstest",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "prettier --check './src/**/*.{tsx,ts}'",
     "lint:fix": "prettier --write './src/**/*.{tsx,ts}'"
