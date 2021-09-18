@@ -15,11 +15,15 @@ import { TrickCombination } from '../../data/tricks';
 interface Props {
   hasLandedBefore: boolean;
   trickCombination: TrickCombination;
+  onSuccess: () => void;
+  onCancel: () => void;
 }
 
 export const TrickCard = ({
   hasLandedBefore,
   trickCombination,
+  onSuccess,
+  onCancel,
 }: Props) => {
   return (
     <Box
@@ -79,12 +83,14 @@ export const TrickCard = ({
             icon={<CloseIcon />}
             aria-label="Skipping"
             colorScheme="red"
+            onClick={onCancel}
           />
           <Spacer />
           <IconButton
             icon={<CheckIcon />}
             aria-label="Landed"
             colorScheme="green"
+            onClick={onSuccess}
           />
         </HStack>
       </Stack>
