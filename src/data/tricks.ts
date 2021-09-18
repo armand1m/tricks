@@ -396,6 +396,10 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       switch: {
         type: 'advanced',
         difficulty: 'medium',
+        video: {
+          title: 'Switch Frontside Pop Shove - Sammy Baptista',
+          embedUrl: 'https://www.youtube.com/embed/tmitqJFo-zM'
+        }
       },
       nollie: {
         type: 'advanced',
@@ -453,6 +457,10 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       switch: {
         type: 'advanced',
         difficulty: 'hard',
+        video: {
+          title: 'Switch Frontside Flip - Rodrigo Petersen',
+          embedUrl: 'https://www.youtube.com/embed/JpRhR2ngHGA'
+        }
       },
       nollie: {
         type: 'advanced',
