@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
-import { useList } from 'react-use';
+import { useList, usePrevious } from 'react-use';
 import {
-  Text,
   Button,
   Center,
   Heading,
@@ -13,8 +12,15 @@ import {
   Stack,
   useDisclosure,
   VStack,
+  List,
+  ListItem,
+  ListIcon,
 } from '@chakra-ui/react';
-import { SettingsIcon } from '@chakra-ui/icons';
+import {
+  CheckCircleIcon,
+  RepeatClockIcon,
+  SettingsIcon,
+} from '@chakra-ui/icons';
 import { userSettingsState } from '../../state/userSettings';
 import { trickAreaMap, TrickCombination } from '../../data/tricks';
 import { flat } from '../../utils/array/flat';
@@ -45,6 +51,8 @@ export const HomePage = () => {
   const [trickQueue, trickQueueActions] = useQueue(trickList);
   const [completed, completedActions] = useList<TrickCombination>([]);
   const [cancelled, cancelledActions] = useList<TrickCombination>([]);
+
+  const prevTrick = usePrevious(trickQueue.first);
 
   const onRestart = useCallback(() => {
     completedActions.clear();
@@ -89,17 +97,37 @@ export const HomePage = () => {
       <VStack>
         {trickQueue.size === 0 && (
           <>
-            <Text size="md">
-              Well, that's it. Tweak the settings to see some new
-              tricks or press the button below to start again.
-            </Text>
+            <List spacing={3}>
+              {completed.map((trick) => {
+                return (
+                  <ListItem>
+                    <ListIcon
+                      as={CheckCircleIcon}
+                      color="green.500"
+                    />
+                    {trick.name}
+                  </ListItem>
+                );
+              })}
+              {cancelled.map((trick) => {
+                return (
+                  <ListItem>
+                    <ListIcon
+                      as={RepeatClockIcon}
+                      color="yellow.500"
+                    />
+                    {trick.name}
+                  </ListItem>
+                );
+              })}
+            </List>
             <Button onClick={onRestart}>Restart</Button>
           </>
         )}
 
         {trickQueue.first && (
           <Center>
-            <SlideFade in={trickQueue.first !== undefined}>
+            <SlideFade in={trickQueue.first !== prevTrick}>
               <TrickCard
                 hasLandedBefore={true}
                 trickCombination={trickQueue.first}
