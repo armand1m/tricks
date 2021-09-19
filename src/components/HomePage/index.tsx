@@ -1,9 +1,14 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { useRecoilValue } from 'recoil';
-import { useLatest, useList } from 'react-use';
+import { useList } from 'react-use';
 import {
   Button,
-  Center,
   Heading,
   HStack,
   IconButton,
@@ -14,21 +19,20 @@ import {
   List,
   ListItem,
   ListIcon,
-  SlideFade,
 } from '@chakra-ui/react';
 import {
+  SettingsIcon,
   CheckCircleIcon,
   RepeatClockIcon,
-  SettingsIcon,
 } from '@chakra-ui/icons';
 import { userSettingsState } from '../../state/userSettings';
 import { trickAreaMap, TrickCombination } from '../../data/tricks';
+import { pop } from '../../utils/array/pop';
 import { flat } from '../../utils/array/flat';
 import { shuffle } from '../../utils/array/shuffle';
-import { useQueue } from '../../utils/hooks/useQueue';
 import { mapTricksToTrickList } from '../../utils/trickCombination/mapTricksToTrickList';
 
-import { TrickCard } from '../TrickCard';
+import { CardStack } from '../CardStack';
 import { ConfigurationDrawer } from '../ConfigurationDrawer';
 
 export const HomePage = () => {
@@ -48,21 +52,15 @@ export const HomePage = () => {
     [userTricks]
   );
 
-  const [trickQueue, trickQueueActions] = useQueue(trickList);
+  const [trickStack, setTrickStack] = useState(trickList);
   const [completed, completedActions] = useList<TrickCombination>([]);
   const [cancelled, cancelledActions] = useList<TrickCombination>([]);
-  const currentTrick = useLatest(trickQueue.first);
 
   const onRestart = useCallback(() => {
     completedActions.clear();
     cancelledActions.clear();
-    trickQueueActions.replace(shuffle(trickList));
-  }, [
-    trickList,
-    completedActions,
-    cancelledActions,
-    trickQueueActions,
-  ]);
+    setTrickStack(shuffle(trickList));
+  }, [trickList, setTrickStack, completedActions, cancelledActions]);
 
   useEffect(() => {
     onRestart();
@@ -93,59 +91,42 @@ export const HomePage = () => {
         </Heading>
       </Stack>
 
-      <VStack>
-        {trickQueue.size === 0 && (
+      <VStack
+        sx={{
+          pointerEvents: isOpen ? 'none' : 'auto',
+        }}>
+        <CardStack
+          tricks={trickStack}
+          onVote={(trick, vote) => {
+            setTrickStack(pop(trickStack));
+
+            const targetList = vote
+              ? completedActions
+              : cancelledActions;
+
+            targetList.push(trick);
+          }}
+        />
+
+        {trickStack.length === 0 && (
           <>
             <List spacing={3}>
-              {completed.map((trick) => {
-                return (
-                  <ListItem>
-                    <ListIcon
-                      as={CheckCircleIcon}
-                      color="green.500"
-                    />
-                    {trick.name}
-                  </ListItem>
-                );
-              })}
-              {cancelled.map((trick) => {
-                return (
-                  <ListItem>
-                    <ListIcon
-                      as={RepeatClockIcon}
-                      color="yellow.500"
-                    />
-                    {trick.name}
-                  </ListItem>
-                );
-              })}
+              {completed.map((trick) => (
+                <ListItem>
+                  <ListIcon as={CheckCircleIcon} color="green.500" />
+                  {trick.name}
+                </ListItem>
+              ))}
+
+              {cancelled.map((trick) => (
+                <ListItem>
+                  <ListIcon as={RepeatClockIcon} color="yellow.500" />
+                  {trick.name}
+                </ListItem>
+              ))}
             </List>
             <Button onClick={onRestart}>Restart</Button>
           </>
-        )}
-
-        {trickQueue.first && (
-          <Center>
-            <SlideFade
-              in={currentTrick.current === trickQueue.first}
-              unmountOnExit>
-              <TrickCard
-                key={trickQueue.first.name}
-                hasLandedBefore={true}
-                trickCombination={trickQueue.first}
-                onSuccess={() => {
-                  const removedTrick = { ...trickQueue.first };
-                  trickQueueActions.remove();
-                  completedActions.push(removedTrick);
-                }}
-                onCancel={() => {
-                  const removedTrick = { ...trickQueue.first };
-                  trickQueueActions.remove();
-                  cancelledActions.push(removedTrick);
-                }}
-              />
-            </SlideFade>
-          </Center>
         )}
       </VStack>
 

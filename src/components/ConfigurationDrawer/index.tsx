@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import {
   Button,
   Text,
@@ -33,7 +34,6 @@ import {
   TrickStance,
   trickStanceLabels,
 } from '../../data/tricks';
-import { useCallback } from 'react';
 
 const userSettingsSchema = Yup.object({
   areas: Yup.array().min(1, 'Please choose at least one area.'),
@@ -76,7 +76,6 @@ export const ConfigurationDrawer = (
       <DrawerContent>
         <DrawerCloseButton />
         <DrawerHeader>User Settings</DrawerHeader>
-
         <DrawerBody>
           <form
             id="user-settings-form"
