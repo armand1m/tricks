@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, SlideFade } from '@chakra-ui/react';
 import { Card } from '../Card';
 import { TrickCombination } from '../../data/tricks';
 import { TrickCard } from '../TrickCard';
@@ -25,16 +25,18 @@ export const CardStack: React.FC<CardStackProps> = ({
             drag={isTop}
             hidden={shouldHide}
             onVote={(result) => onVote(trick, result)}>
-            <TrickCard
-              hasLandedBefore
-              trickCombination={trick}
-              onSuccess={() => {
-                onVote(trick, true);
-              }}
-              onCancel={() => {
-                onVote(trick, false);
-              }}
-            />
+            <SlideFade in={!shouldHide}>
+              <TrickCard
+                hasLandedBefore
+                trickCombination={trick}
+                onSuccess={() => {
+                  onVote(trick, true);
+                }}
+                onCancel={() => {
+                  onVote(trick, false);
+                }}
+              />
+            </SlideFade>
           </Card>
         );
       })}
