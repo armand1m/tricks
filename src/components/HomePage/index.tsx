@@ -19,6 +19,7 @@ import {
   List,
   ListItem,
   ListIcon,
+  SlideFade,
 } from '@chakra-ui/react';
 import {
   SettingsIcon,
@@ -32,7 +33,8 @@ import { flat } from '../../utils/array/flat';
 import { shuffle } from '../../utils/array/shuffle';
 import { mapTricksToTrickList } from '../../utils/trickCombination/mapTricksToTrickList';
 
-import { CardStack } from '../CardStack';
+import { Card } from '../Card';
+import { TrickCard } from '../TrickCard';
 import { ConfigurationDrawer } from '../ConfigurationDrawer';
 
 export const HomePage = () => {
@@ -62,9 +64,20 @@ export const HomePage = () => {
     setTrickStack(shuffle(trickList));
   }, [trickList, setTrickStack, completedActions, cancelledActions]);
 
+  const onVote = useCallback(
+    (trick: TrickCombination, vote: boolean) => {
+      setTrickStack((trickStack) => pop(trickStack));
+
+      const targetList = vote ? completedActions : cancelledActions;
+
+      targetList.push(trick);
+    },
+    [setTrickStack, completedActions, cancelledActions]
+  );
+
   useEffect(() => {
     onRestart();
-  }, [trickList, onRestart]);
+  }, [onRestart]);
 
   console.log({
     completed,
@@ -91,42 +104,63 @@ export const HomePage = () => {
         </Heading>
       </Stack>
 
-      <VStack
-        sx={{
-          pointerEvents: isOpen ? 'none' : 'auto',
-        }}>
-        <CardStack
-          tricks={trickStack}
-          onVote={(trick, vote) => {
-            setTrickStack(pop(trickStack));
+      <VStack>
+        <VStack
+          sx={{
+            // Avoid events to reach components
+            // when the sidebar is open
+            // This is mainly because of video embeds
+            pointerEvents: isOpen ? 'none' : 'auto',
+          }}>
+          {trickStack.map((trick, index) => {
+            const isTop = index === trickStack.length - 1;
+            const shouldHide = index < trickStack.length - 3;
 
-            const targetList = vote
-              ? completedActions
-              : cancelledActions;
-
-            targetList.push(trick);
-          }}
-        />
+            return (
+              <Card
+                id={trick.name}
+                key={trick.name}
+                drag={
+                  isTop && userSettings.disableDraggingCards === false
+                }
+                hidden={shouldHide}
+                onVote={(result) => onVote(trick, result)}>
+                <SlideFade in={!shouldHide}>
+                  <TrickCard
+                    hasLandedBefore
+                    trickCombination={trick}
+                    onSuccess={() => {
+                      onVote(trick, true);
+                    }}
+                    onCancel={() => {
+                      onVote(trick, false);
+                    }}
+                  />
+                </SlideFade>
+              </Card>
+            );
+          })}
+        </VStack>
 
         {trickStack.length === 0 && (
-          <>
+          <VStack pb={3}>
             <List spacing={3}>
               {completed.map((trick) => (
-                <ListItem>
+                <ListItem key={`completed-${trick.name}`}>
                   <ListIcon as={CheckCircleIcon} color="green.500" />
                   {trick.name}
                 </ListItem>
               ))}
 
               {cancelled.map((trick) => (
-                <ListItem>
+                <ListItem key={`cancelled-${trick.name}`}>
                   <ListIcon as={RepeatClockIcon} color="yellow.500" />
                   {trick.name}
                 </ListItem>
               ))}
             </List>
             <Button onClick={onRestart}>Restart</Button>
-          </>
+          </VStack>
         )}
       </VStack>
 
