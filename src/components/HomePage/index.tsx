@@ -79,6 +79,11 @@ export const HomePage = () => {
     ]
   );
 
+  const tricksToRender = useMemo(() => {
+    const sliced = trickStack.slice(trickStack.length - 3);
+    return sliced;
+  }, [trickStack]);
+
   useEffect(() => {
     onRestart();
   }, [onRestart]);
@@ -109,6 +114,10 @@ export const HomePage = () => {
       </Stack>
 
       <VStack>
+        <Heading size="xl" colorScheme="gray">
+          {completed.length + cancelled.length}/{trickList.length}
+        </Heading>
+
         <VStack
           sx={{
             // Avoid events to reach components
@@ -116,9 +125,9 @@ export const HomePage = () => {
             // This is mainly because of video embeds
             pointerEvents: isOpen ? 'none' : 'auto',
           }}>
-          {trickStack.map((trick, index) => {
-            const isTop = index === trickStack.length - 1;
-            const shouldHide = index < trickStack.length - 3;
+          {tricksToRender.map((trick, index) => {
+            const isTop = index === tricksToRender.length - 1;
+            const shouldHide = index < tricksToRender.length - 3;
 
             return (
               <Card
