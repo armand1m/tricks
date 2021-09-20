@@ -1,10 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useList } from 'react-use';
 import {
@@ -28,7 +22,6 @@ import {
 } from '@chakra-ui/icons';
 import { userSettingsState } from '../../state/userSettings';
 import { trickAreaMap, TrickCombination } from '../../data/tricks';
-import { pop } from '../../utils/array/pop';
 import { flat } from '../../utils/array/flat';
 import { shuffle } from '../../utils/array/shuffle';
 import { mapTricksToTrickList } from '../../utils/trickCombination/mapTricksToTrickList';
@@ -54,25 +47,36 @@ export const HomePage = () => {
     [userTricks]
   );
 
-  const [trickStack, setTrickStack] = useState(trickList);
+  const [trickStack, trickStackActions] =
+    useList<TrickCombination>(trickList);
   const [completed, completedActions] = useList<TrickCombination>([]);
   const [cancelled, cancelledActions] = useList<TrickCombination>([]);
 
   const onRestart = useCallback(() => {
     completedActions.clear();
     cancelledActions.clear();
-    setTrickStack(shuffle(trickList));
-  }, [trickList, setTrickStack, completedActions, cancelledActions]);
+    trickStackActions.set(shuffle(trickList));
+  }, [
+    trickList,
+    trickStackActions,
+    completedActions,
+    cancelledActions,
+  ]);
 
   const onVote = useCallback(
     (trick: TrickCombination, vote: boolean) => {
-      setTrickStack((trickStack) => pop(trickStack));
+      trickStackActions.removeAt(trickStack.length - 1);
 
       const targetList = vote ? completedActions : cancelledActions;
 
       targetList.push(trick);
     },
-    [setTrickStack, completedActions, cancelledActions]
+    [
+      trickStack,
+      trickStackActions,
+      completedActions,
+      cancelledActions,
+    ]
   );
 
   useEffect(() => {

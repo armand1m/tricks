@@ -125,9 +125,11 @@ export const Card: React.FC<CardProps> = ({
     const unsubscribePositionX = positionX.onChange(() => {
       const vote = getVote();
 
-      if (vote !== undefined) {
-        onVote(vote);
+      if (vote === undefined) {
+        return;
       }
+
+      onVote(vote);
     });
 
     return () => unsubscribePositionX();
