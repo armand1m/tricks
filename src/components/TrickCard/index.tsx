@@ -1,4 +1,3 @@
-import { CheckIcon, CloseIcon } from '@chakra-ui/icons';
 import {
   Text,
   Image,
@@ -10,6 +9,7 @@ import {
   AspectRatio,
   Stack,
 } from '@chakra-ui/react';
+import { CheckIcon, CloseIcon } from '@chakra-ui/icons';
 import { TrickCombination } from '../../data/tricks';
 
 interface Props {
@@ -28,9 +28,11 @@ export const TrickCard = ({
   return (
     <Box
       maxW="sm"
-      borderWidth="1px"
+      borderWidth="0.5px"
+      borderColor="gray.800"
       borderRadius="lg"
       overflow="hidden"
+      backgroundColor="gray.900"
       boxShadow="2xl">
       {!trickCombination.video && (
         <Image src="assets/images/no-video-available.jpg" />
@@ -38,11 +40,15 @@ export const TrickCard = ({
 
       {trickCombination.video && (
         <Box width="sm">
-          <AspectRatio maxW="560px" ratio={1}>
+          <AspectRatio
+            onClick={(e) => console.log(e)}
+            onTouchStart={console.log}
+            maxW="560px"
+            ratio={1}>
             <iframe
               allowFullScreen
               title={trickCombination.video.title}
-              src={trickCombination.video.embedUrl}
+              src={trickCombination.video.embedUrl + '?mute=1'}
             />
           </AspectRatio>
         </Box>

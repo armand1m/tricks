@@ -1,6 +1,23 @@
-# Getting Started with Create React App
+# Tricks 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Tricks project is a personal skateboard training app.
+
+## Idea 
+
+Disclaimer: as this project is extremely aimed at skateboarders, we'll be using skateboarding jargon here.
+
+Tricks is a web app that will give you tricks to try to and the option to record your history. 
+
+It works by asking for you to tweak the settings in order to get different sets of tricks. Feeling like skating nollie and switch flatground, or maybe going fakie on a ledge? tweak the settings and get some suggestions.
+
+The feature set is not set on stone, but some ideas so far are:
+
+  - [ ] Offer tricks in a shuffled way
+  - [ ] Store tricks you landed
+  - [ ] Store tricks you skipped or missed for later retries
+  - [ ] Keep a history from when you last landed a trick to give reminders to help you keep consistent
+  - [ ] Allow to upload videos when landing tricks
+  - [ ] Show up a gallery of uploaded tricks
 
 ## Available Scripts
 

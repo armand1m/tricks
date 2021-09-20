@@ -9,6 +9,7 @@ import {
 export interface UserSettings {
   level: TrickDifficulty;
   includeEasierTricks: boolean;
+  disableDraggingCards: boolean;
   stances: TrickStance[];
   areas: TrickArea[];
 }
@@ -19,6 +20,7 @@ export const userSettingsState = atom<UserSettings>({
   default: {
     level: 'easy',
     includeEasierTricks: false,
+    disableDraggingCards: false,
     stances: ['regular', 'fakie'],
     areas: ['flatground'],
   },

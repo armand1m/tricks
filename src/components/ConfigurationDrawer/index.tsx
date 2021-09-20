@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import {
   Button,
   Text,
@@ -33,12 +34,12 @@ import {
   TrickStance,
   trickStanceLabels,
 } from '../../data/tricks';
-import { useCallback } from 'react';
 
 const userSettingsSchema = Yup.object({
   areas: Yup.array().min(1, 'Please choose at least one area.'),
   stances: Yup.array().min(1, 'Please select at least one stance.'),
   includeEasierTricks: Yup.boolean().default(false),
+  disableDraggingCards: Yup.boolean().default(false),
   level: Yup.string()
     .oneOf(['easy', 'medium', 'hard', 'xhard'])
     .required('Please select a trick level'),
@@ -76,7 +77,6 @@ export const ConfigurationDrawer = (
       <DrawerContent>
         <DrawerCloseButton />
         <DrawerHeader>User Settings</DrawerHeader>
-
         <DrawerBody>
           <form
             id="user-settings-form"
@@ -195,6 +195,23 @@ export const ConfigurationDrawer = (
                   onChange={(e) => {
                     formik.setFieldValue(
                       'includeEasierTricks',
+                      e.target.checked
+                    );
+                  }}
+                />
+              </FormControl>
+
+              <FormControl display="flex" alignItems="center">
+                <FormLabel htmlFor="disableDraggingCards">
+                  Disable Dragging Cards
+                </FormLabel>
+
+                <Switch
+                  id="disableDraggingCards"
+                  isChecked={formik.values.disableDraggingCards}
+                  onChange={(e) => {
+                    formik.setFieldValue(
+                      'disableDraggingCards',
                       e.target.checked
                     );
                   }}
