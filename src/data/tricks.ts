@@ -898,6 +898,10 @@ export const ledgeTricks: ReadonlyArray<Trick> = [
       regular: {
         type: 'fundamental',
         difficulty: 'easy',
+        video: {
+          title: 'Plan B - Prod Ledge Fundamentals #1. 50-50',
+          embedUrl: 'https://www.youtube.com/embed/kCR4QAWR-Eo',
+        },
       },
       fakie: {
         type: 'advanced',
