@@ -1,4 +1,3 @@
-
 export type TrickArea =
   | 'flatground'
   | 'rails'
@@ -14,6 +13,7 @@ export type TrickStance = 'switch' | 'nollie' | 'fakie' | 'regular';
 export interface TrickVariation {
   type: TrickType;
   difficulty: TrickDifficulty;
+  alternativeName?: string;
   video?: {
     embedUrl: string;
     title: string;
@@ -71,6 +71,7 @@ export interface TrickCombination {
   areas: [TrickArea];
   difficulty: TrickDifficulty;
   type: TrickType;
+  alternativeName?: string;
   video?: {
     embedUrl: string;
     title: string;
@@ -90,6 +91,7 @@ export const getTrickCombinations = (
         areas: [trick.area],
         difficulty: variation.difficulty,
         type: variation.type,
+        alternativeName: variation.alternativeName,
         video: variation.video,
       };
     }
@@ -116,10 +118,20 @@ export const railTricks: ReadonlyArray<Trick> = [
       regular: {
         type: 'fundamental',
         difficulty: 'easy',
+        video: {
+          title:
+            'HOW TO BACKSIDE BOARDSLIDE THE EASIEST WAY TUTORIAL',
+          embedUrl: 'https://www.youtube.com/embed/sJxeWBGyW-w',
+        },
       },
       fakie: {
         type: 'advanced',
         difficulty: 'medium',
+        alternativeName: 'Halfcab Boardslide',
+        video: {
+          title: 'How to half cab boardslide',
+          embedUrl: 'https://www.youtube.com/embed/4lo083HaB3k',
+        },
       },
       nollie: {
         type: 'advanced',
@@ -934,6 +946,10 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       nollie: {
         type: 'advanced',
         difficulty: 'xhard',
+        video: {
+          title: 'Trick 272: Nollie Impossible',
+          embedUrl: 'https://www.youtube.com/embed/4lo083HaB3k',
+        },
       },
     },
   },

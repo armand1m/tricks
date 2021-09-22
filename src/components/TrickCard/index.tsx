@@ -25,6 +25,11 @@ export const TrickCard = ({
   onSuccess,
   onCancel,
 }: Props) => {
+  const trickName =
+    trickCombination.alternativeName === undefined
+      ? trickCombination.name
+      : trickCombination.alternativeName;
+
   return (
     <Box
       maxW="sm"
@@ -81,7 +86,7 @@ export const TrickCard = ({
           fontSize="lg"
           fontWeight="semibold"
           lineHeight="tight">
-          {trickCombination.name}
+          {trickName}
         </Text>
 
         <HStack>
