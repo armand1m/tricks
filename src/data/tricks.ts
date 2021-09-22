@@ -1,3 +1,4 @@
+
 export type TrickArea =
   | 'flatground'
   | 'rails'
@@ -362,18 +363,36 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       regular: {
         type: 'fundamental',
         difficulty: 'easy',
+        video: {
+          title: 'HOW TO FRONTSIDE 180 THE EASIEST WAY TUTORIAL 2020',
+          embedUrl: 'https://www.youtube.com/embed/ZSe9vPoXKiU',
+        },
       },
       fakie: {
         type: 'fundamental',
         difficulty: 'easy',
+        video: {
+          title:
+            'HOW TO FAKIE FRONTSIDE 180 THE EASIEST WAY TUTORIAL',
+          embedUrl: 'https://www.youtube.com/embed/c9V0p_nobeE',
+        },
       },
       switch: {
         type: 'advanced',
         difficulty: 'easy',
+        video: {
+          title: 'How To: Switch Frontside 180',
+          embedUrl: 'https://www.youtube.com/embed/mr45Ih5QGSs',
+        },
       },
       nollie: {
         type: 'advanced',
         difficulty: 'medium',
+        video: {
+          title:
+            'HOW TO NOLLIE FRONTSIDE 180 THE EASIEST WAY TUTORIAL',
+          embedUrl: 'https://www.youtube.com/embed/jDgwtHKuTJc',
+        },
       },
     },
   },
@@ -392,6 +411,11 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       fakie: {
         type: 'advanced',
         difficulty: 'medium',
+        video: {
+          title:
+            'HOW TO FAKIE FRONTSIDE SHOVE IT THE EASIEST WAY TUTORIAL!',
+          embedUrl: 'https://www.youtube.com/embed/bmerMAMed_c',
+        },
       },
       switch: {
         type: 'advanced',
@@ -422,14 +446,28 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       fakie: {
         type: 'fundamental',
         difficulty: 'easy',
+        video: {
+          title:
+            'How to fakie backside pop shove it | Fakie Skateboard Trick',
+          embedUrl: 'https://www.youtube.com/embed/D7z8-EcoryA',
+        },
       },
       switch: {
         type: 'advanced',
         difficulty: 'medium',
+        video: {
+          title:
+            'How To Switch Pop Shove It, Keelan Dadd, Alli Sports Skateboard Step by Step',
+          embedUrl: 'https://www.youtube.com/embed/V1AjAyUlfjM',
+        },
       },
       nollie: {
         type: 'advanced',
         difficulty: 'easy',
+        video: {
+          title: 'How to Nollie BS Pop Shuv-It | Skate School Ep 72',
+          embedUrl: 'https://www.youtube.com/embed/YBdoZ3SAEHY',
+        },
       },
     },
   },
@@ -497,6 +535,11 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       switch: {
         type: 'advanced',
         difficulty: 'hard',
+        video: {
+          title:
+            'How-To Skateboarding: Switch Backside Flip with Cesar Fernandez',
+          embedUrl: 'https://www.youtube.com/embed/d9O6v4gv2PM',
+        },
       },
       nollie: {
         type: 'advanced',
@@ -524,6 +567,10 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       fakie: {
         type: 'advanced',
         difficulty: 'hard',
+        video: {
+          title: 'How To: FAKIE FS HEELFLIP',
+          embedUrl: 'https://www.youtube.com/embed/3cwVnwS5OL8',
+        },
       },
       switch: {
         type: 'advanced',
@@ -537,6 +584,11 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       nollie: {
         type: 'advanced',
         difficulty: 'hard',
+        video: {
+          title:
+            'How-To Skateboarding: Nollie Frontside Heelflips with Nate Principato',
+          embedUrl: 'https://www.youtube.com/embed/bqflN1Cs7hY',
+        },
       },
     },
   },
@@ -564,6 +616,10 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       switch: {
         type: 'advanced',
         difficulty: 'hard',
+        video: {
+          title: 'TUTORIAL: Switch Backside Heelflip',
+          embedUrl: 'https://www.youtube.com/embed/-WHyaBtQcSc',
+        },
       },
       nollie: {
         type: 'advanced',
@@ -591,6 +647,10 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       fakie: {
         type: 'advanced',
         difficulty: 'medium',
+        video: {
+          title: 'HOW TO FAKIE FLIP THE EASIEST WAY TUTORIAL!',
+          embedUrl: 'https://www.youtube.com/embed/DjUs5A9nL9I',
+        },
       },
       switch: {
         type: 'advanced',
@@ -633,10 +693,19 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       switch: {
         type: 'advanced',
         difficulty: 'xhard',
+        video: {
+          title:
+            'How-To Skateboarding: Switch Big Spins with Spencer Nuzzi',
+          embedUrl: 'https://www.youtube.com/embed/R84dTWmZKFM',
+        },
       },
       nollie: {
         type: 'advanced',
         difficulty: 'medium',
+        video: {
+          title: 'How To Nollie Big Spin',
+          embedUrl: 'https://www.youtube.com/embed/x2gVP19qmuU',
+        },
       },
     },
   },
@@ -655,6 +724,10 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       fakie: {
         type: 'advanced',
         difficulty: 'medium',
+        video: {
+          title: 'Fakie Frontside Bigspins with Kelly Fornez',
+          embedUrl: 'https://www.youtube.com/embed/8vWpjKtAb_4',
+        },
       },
       switch: {
         type: 'advanced',
@@ -668,6 +741,10 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       nollie: {
         type: 'advanced',
         difficulty: 'medium',
+        video: {
+          title: 'How to NOLLIE BACKSIDE BIGSPIN',
+          embedUrl: 'https://www.youtube.com/embed/v6RPBUNSqEM',
+        },
       },
     },
   },
@@ -686,6 +763,10 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       fakie: {
         type: 'fundamental',
         difficulty: 'medium',
+        video: {
+          title: 'HOW TO FAKIE VARIAL FLIP THE EASIEST WAY TUTORIAL',
+          embedUrl: 'https://www.youtube.com/embed/tJs8462xpWg',
+        },
       },
       switch: {
         type: 'advanced',
@@ -720,10 +801,19 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       fakie: {
         type: 'advanced',
         difficulty: 'hard',
+        video: {
+          title: 'HOW TO VARIAL HEELFLIP THE EASIEST WAY TUTORIAL',
+          embedUrl: 'https://www.youtube.com/embed/iCyRLt3cM0o',
+        },
       },
       switch: {
         type: 'advanced',
         difficulty: 'hard',
+        video: {
+          title:
+            'How-to Skateboarding: Switch Varial Heelflip with Mike Piwowar',
+          embedUrl: 'https://www.youtube.com/embed/IrT712Xkg5Y',
+        },
       },
       nollie: {
         type: 'advanced',
@@ -750,14 +840,28 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       fakie: {
         type: 'advanced',
         difficulty: 'hard',
+        video: {
+          title:
+            'How-To Skateboarding: Fakie Inward Heelflip With Reuben Barrack',
+          embedUrl: 'https://www.youtube.com/embed/GEKFSHBYEZE',
+        },
       },
       switch: {
         type: 'advanced',
         difficulty: 'xhard',
+        video: {
+          title: 'SWITCH INWARD HEELFLIP SLOW MOTION',
+          embedUrl: 'https://www.youtube.com/embed/Hi48EnWF3W4',
+        },
       },
       nollie: {
         type: 'advanced',
         difficulty: 'hard',
+        video: {
+          title:
+            'How-To Skateboarding: Nollie Inward Heelflip with Max Taylor',
+          embedUrl: 'https://www.youtube.com/embed/4LWj3CRqvDo',
+        },
       },
     },
   },
@@ -792,6 +896,10 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       nollie: {
         type: 'advanced',
         difficulty: 'xhard',
+        video: {
+          title: 'How to Nollie Hardflip (The Key Secret)',
+          embedUrl: 'https://www.youtube.com/embed/wFd9es9spno',
+        },
       },
     },
   },
@@ -802,10 +910,18 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       regular: {
         type: 'advanced',
         difficulty: 'medium',
+        video: {
+          title: 'how to impossible',
+          embedUrl: 'https://www.youtube.com/embed/Fi7gPPN9zC8',
+        },
       },
       fakie: {
         type: 'advanced',
         difficulty: 'medium',
+        video: {
+          title: 'Fakie impossible trick tip',
+          embedUrl: 'https://www.youtube.com/embed/_NipV9FewPM',
+        },
       },
       switch: {
         type: 'advanced',
@@ -836,6 +952,10 @@ export const flatgroundTricks: ReadonlyArray<Trick> = [
       fakie: {
         type: 'advanced',
         difficulty: 'hard',
+        video: {
+          title: 'Fakie Big Flip Tricktip',
+          embedUrl: 'https://www.youtube.com/embed/lIPGrRabAs0',
+        },
       },
       switch: {
         type: 'advanced',
@@ -924,6 +1044,10 @@ export const ledgeTricks: ReadonlyArray<Trick> = [
       regular: {
         type: 'fundamental',
         difficulty: 'medium',
+        video: {
+          title: 'Nike SB | How To Backside 50-50 | Nick Boserio',
+          embedUrl: 'https://www.youtube.com/embed/mZVBMoGdwQU',
+        },
       },
       fakie: {
         type: 'advanced',
@@ -946,6 +1070,11 @@ export const ledgeTricks: ReadonlyArray<Trick> = [
       regular: {
         type: 'fundamental',
         difficulty: 'medium',
+        video: {
+          title:
+            'How to Backside Crooked Grind aka BS K-Grind | Skateboard Trick Tip | skatedeluxe',
+          embedUrl: 'https://www.youtube.com/embed/E2-aLE2HZ1w',
+        },
       },
       fakie: {
         type: 'advanced',
@@ -968,6 +1097,10 @@ export const ledgeTricks: ReadonlyArray<Trick> = [
       regular: {
         type: 'advanced',
         difficulty: 'hard',
+        video: {
+          title: 'Frontside Crooked Grind',
+          embedUrl: 'https://www.youtube.com/embed/-6pSeeQqQHk',
+        },
       },
       fakie: {
         type: 'advanced',
@@ -990,6 +1123,11 @@ export const ledgeTricks: ReadonlyArray<Trick> = [
       regular: {
         type: 'fundamental',
         difficulty: 'easy',
+        video: {
+          title:
+            'How to 5-0 Grind (FS & BS) | Skateboard Trick Tip | skatedeluxe',
+          embedUrl: 'https://www.youtube.com/embed/A4Pvu3QarUU',
+        },
       },
       fakie: {
         type: 'advanced',
