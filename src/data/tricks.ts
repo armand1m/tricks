@@ -1,4 +1,3 @@
-import { emit } from 'process';
 
 export type TrickArea =
   | 'flatground'
